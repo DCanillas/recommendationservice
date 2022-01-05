@@ -39,7 +39,8 @@ public class RecommendationServiceImpl implements RecommendationService {
             }
         }
         log.info("RecommendationServiceImpl - Found getRecommendation: "+productRecommended);
-        return mapProductToDTO(productRecommended);
+        ProductDTO productRecommendedDTO = productRecommended != null ? mapProductToDTO(productRecommended) : null;
+        return productRecommendedDTO;
     }
 
     static ProductDTO mapProductToDTO (Product product){
