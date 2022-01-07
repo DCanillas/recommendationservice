@@ -3,9 +3,9 @@ package org.example.recommendationservice.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.example.modelproject.Category;
-import org.example.modelproject.Product;
-import org.example.recommendationservice.dto.ProductDTO;
+import org.example.modelproject.model.Category;
+import org.example.modelproject.model.Product;
+import org.example.modelproject.dto.ProductRecommendedDTO;
 import org.example.recommendationservice.repository.RecommendationRepository;
 import org.example.recommendationservice.service.impl.RecommendationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +34,7 @@ public class RecommendationServiceImplTest {
     private RecommendationServiceImpl recommendationService;
 
     private List<Product> listProducts;
-    private ProductDTO product;
+    private ProductRecommendedDTO product;
     private Category category;
 
     @BeforeEach
@@ -46,7 +46,7 @@ public class RecommendationServiceImplTest {
 
         product = new ObjectMapper().readValue(
                 new File("src/test/resource/Product.json"),
-                new TypeReference<ProductDTO>() {
+                new TypeReference<ProductRecommendedDTO>() {
                 });
     }
 
@@ -56,7 +56,7 @@ public class RecommendationServiceImplTest {
 
         Mockito.when(recommendationRepository.findAll()).thenReturn(listProducts);
 
-        ProductDTO actualListProductsDTO = recommendationService.getRecommendation(Long.valueOf(1));
+        ProductRecommendedDTO actualListProductsDTO = recommendationService.getRecommendation(Long.valueOf(1));
         assertNotEquals(product, null);
     }
 

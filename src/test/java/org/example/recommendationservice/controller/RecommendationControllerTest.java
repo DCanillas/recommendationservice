@@ -3,8 +3,8 @@ package org.example.recommendationservice.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.example.modelproject.Product;
-import org.example.recommendationservice.dto.ProductDTO;
+import org.example.modelproject.model.Product;
+import org.example.modelproject.dto.ProductRecommendedDTO;
 import org.example.recommendationservice.service.impl.RecommendationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,7 +36,7 @@ public class RecommendationControllerTest {
     private RecommendationServiceImpl recommendationService;
 
     private List<Product> listProducts;
-    private ProductDTO product;
+    private ProductRecommendedDTO product;
     private final String url = "/api/v1/recommendation/1";
 
     @BeforeEach
@@ -47,7 +47,7 @@ public class RecommendationControllerTest {
                 });
         product = new ObjectMapper().readValue(
                 new File("src/test/resource/Product.json"),
-                new TypeReference<ProductDTO>() {
+                new TypeReference<ProductRecommendedDTO>() {
                 });
     }
 

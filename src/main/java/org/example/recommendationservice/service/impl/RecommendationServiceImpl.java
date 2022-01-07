@@ -1,8 +1,8 @@
 package org.example.recommendationservice.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.modelproject.Product;
-import org.example.recommendationservice.dto.ProductDTO;
+import org.example.modelproject.dto.ProductRecommendedDTO;
+import org.example.modelproject.model.Product;
 import org.example.recommendationservice.repository.RecommendationRepository;
 import org.example.recommendationservice.service.RecommendationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class RecommendationServiceImpl implements RecommendationService {
 
     // get product recommended
     @Override
-    public ProductDTO getRecommendation(long customerId) {
+    public ProductRecommendedDTO getRecommendation(long customerId) {
         log.info("RecommendationServiceImpl - Method getRecommendation");
         List<Product> products = recommendationRepository.findAll();
         int productsSize = products.size();
@@ -39,17 +39,17 @@ public class RecommendationServiceImpl implements RecommendationService {
             }
         }
         log.info("RecommendationServiceImpl - Found getRecommendation: "+productRecommended);
-        ProductDTO productRecommendedDTO = productRecommended != null ? mapProductToDTO(productRecommended) : null;
+        ProductRecommendedDTO productRecommendedDTO = productRecommended != null ? mapProductToDTO(productRecommended) : null;
         return productRecommendedDTO;
     }
 
-    static ProductDTO mapProductToDTO (Product product){
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setId(product.getId());
-        productDTO.setName(product.getName());
-        productDTO.setDescription(product.getDescription());
-        productDTO.setPrice(product.getPrice());
-        return productDTO;
+    static ProductRecommendedDTO mapProductToDTO (Product product){
+        ProductRecommendedDTO productRecommendedDTO = new ProductRecommendedDTO();
+        productRecommendedDTO.setId(product.getId());
+        productRecommendedDTO.setName(product.getName());
+        productRecommendedDTO.setDescription(product.getDescription());
+        productRecommendedDTO.setPrice(product.getPrice());
+        return productRecommendedDTO;
     }
 
 }

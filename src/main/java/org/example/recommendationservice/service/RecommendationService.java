@@ -1,7 +1,7 @@
 package org.example.recommendationservice.service;
 
-import org.example.recommendationservice.dto.ProductDTO;
+import org.example.modelproject.dto.ProductRecommendedDTO;
 
 public interface RecommendationService {
-    ProductDTO getRecommendation(long customerId);
+    ProductRecommendedDTO getRecommendation(long customerId);
 }

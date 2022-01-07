@@ -1,6 +1,6 @@
 package org.example.recommendationservice.controller;
 
-import org.example.recommendationservice.dto.ProductDTO;
+import org.example.modelproject.dto.ProductRecommendedDTO;
 import org.example.recommendationservice.service.impl.RecommendationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class RecommendationController {
 
     // get product recommended
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> getRecommendation(@PathVariable(value = "id") long customerId) {
+    public ResponseEntity<ProductRecommendedDTO> getRecommendation(@PathVariable(value = "id") long customerId) {
         return ResponseEntity.ok().body(recommendationService.getRecommendation(customerId));
     }
 }
