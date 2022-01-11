@@ -5,6 +5,7 @@ import org.example.modelproject.dto.ProductRecommendedDTO;
 import org.example.modelproject.model.Product;
 import org.example.recommendationservice.repository.RecommendationRepository;
 import org.example.recommendationservice.service.RecommendationService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,16 +40,9 @@ public class RecommendationServiceImpl implements RecommendationService {
             }
         }
         log.info("RecommendationServiceImpl - Found getRecommendation: "+productRecommended);
-        ProductRecommendedDTO productRecommendedDTO = productRecommended != null ? mapProductToDTO(productRecommended) : null;
-        return productRecommendedDTO;
-    }
-
-    static ProductRecommendedDTO mapProductToDTO (Product product){
-        ProductRecommendedDTO productRecommendedDTO = new ProductRecommendedDTO();
-        productRecommendedDTO.setId(product.getId());
-        productRecommendedDTO.setName(product.getName());
-        productRecommendedDTO.setDescription(product.getDescription());
-        productRecommendedDTO.setPrice(product.getPrice());
+        ProductRecommendedDTO productRecommendedDTO = productRecommended != null
+                ? new ModelMapper().map(productRecommended, ProductRecommendedDTO.class) : null;
+        log.info("RecommendationServiceImpl - Found getRecommendationDTO: "+productRecommendedDTO);
         return productRecommendedDTO;
     }
 

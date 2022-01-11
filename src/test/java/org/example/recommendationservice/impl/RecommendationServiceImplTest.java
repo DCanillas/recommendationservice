@@ -56,7 +56,7 @@ public class RecommendationServiceImplTest {
 
         Mockito.when(recommendationRepository.findAll()).thenReturn(listProducts);
 
-        ProductRecommendedDTO actualListProductsDTO = recommendationService.getRecommendation(Long.valueOf(1));
+        ProductRecommendedDTO actualListProductsDTO = recommendationService.getRecommendation(1L);
         assertNotEquals(product, null);
     }
 
