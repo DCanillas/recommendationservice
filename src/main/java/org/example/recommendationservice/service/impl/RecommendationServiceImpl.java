@@ -15,10 +15,12 @@ import java.util.List;
 @Service
 public class RecommendationServiceImpl implements RecommendationService {
     private final RecommendationRepository recommendationRepository;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public RecommendationServiceImpl(RecommendationRepository recommendationRepository) {
+    public RecommendationServiceImpl(RecommendationRepository recommendationRepository, ModelMapper modelMapper) {
         this.recommendationRepository = recommendationRepository;
+        this.modelMapper = modelMapper;
     }
 
     // get product recommended
@@ -41,7 +43,7 @@ public class RecommendationServiceImpl implements RecommendationService {
         }
         log.info("RecommendationServiceImpl - Found getRecommendation: "+productRecommended);
         ProductRecommendedDTO productRecommendedDTO = productRecommended != null
-                ? new ModelMapper().map(productRecommended, ProductRecommendedDTO.class) : null;
+                ? modelMapper.map(productRecommended, ProductRecommendedDTO.class) : null;
         log.info("RecommendationServiceImpl - Found getRecommendationDTO: "+productRecommendedDTO);
         return productRecommendedDTO;
     }
