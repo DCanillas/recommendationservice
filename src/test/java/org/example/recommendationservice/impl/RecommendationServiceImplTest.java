@@ -14,13 +14,16 @@ import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @Slf4j
+@ActiveProfiles("test")
 @SpringBootTest
 public class RecommendationServiceImplTest {
     @Autowired
@@ -49,6 +52,7 @@ public class RecommendationServiceImplTest {
     }
 
     @Test
+    @Transactional
     public void testRecommendation(){
         log.info("Test - testRecommendation");
 

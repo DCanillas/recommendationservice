@@ -11,10 +11,14 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
+
+import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
+@ActiveProfiles("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RecommendationIntegrationTest {
     @LocalServerPort
@@ -24,6 +28,7 @@ public class RecommendationIntegrationTest {
     private TestRestTemplate testRestTemplate;
 
     @Test
+    @Transactional
     public void testRecommendation(){
         log.info("Test - testRecommendation");
         String url = "http://localhost:"+port+"/api/v1/recommendation/1";
