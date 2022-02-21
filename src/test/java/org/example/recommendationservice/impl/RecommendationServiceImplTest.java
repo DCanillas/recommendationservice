@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.modelproject.dto.ProductRecommendedDTO;
 import org.example.modelproject.model.Product;
 import org.example.recommendationservice.repository.RecommendationRepository;
+import org.example.recommendationservice.security.TestSecurityConfig;
 import org.example.recommendationservice.service.impl.RecommendationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @Slf4j
 @ActiveProfiles("test")
-@SpringBootTest
+@SpringBootTest(classes = TestSecurityConfig.class)
 public class RecommendationServiceImplTest {
     @Autowired
     private ModelMapper modelMapper;
